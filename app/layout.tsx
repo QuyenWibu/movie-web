@@ -31,6 +31,7 @@ export default function RootLayout({
         
         <main>
           {children}
+      
         </main>
 
         <footer><DynamicFooter /></footer>

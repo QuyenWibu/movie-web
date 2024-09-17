@@ -6,7 +6,7 @@ import "./globals.css";
 import dynamic from 'next/dynamic';
 
 const inter = Inter({ subsets: ["latin"] });
-
+const DynamicSearch= dynamic(() => import('./components/SearchBar'), { ssr: false });
 const DynamicHeader = dynamic(() => import('./components/Header'), { ssr: false });
 const DynamicFooter = dynamic(() => import('./components/Footer'), { ssr: false });
 
@@ -29,7 +29,8 @@ export default function RootLayout({
       <body className={inter.className}>
         <header><DynamicHeader /></header>
         
-        <main>
+        <main className="mt-[100px] mb-[100px]">
+          <DynamicSearch/>
           {children}
       
         </main>

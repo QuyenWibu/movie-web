@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 const DynamicMovie= dynamic(() => import('./components/Movie'), { ssr: false });
 
 
-const DynamicSearch= dynamic(() => import('./components/SearchBar'), { ssr: false });
+
 
 export default function Home() {
   return (

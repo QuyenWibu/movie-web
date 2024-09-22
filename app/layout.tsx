@@ -1,15 +1,13 @@
-// app/layout.js
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeModeScript } from "flowbite-react";
 import "./globals.css";
 import dynamic from 'next/dynamic';
+import AppSessionProvider from './components/SessionProvider';
 
 const inter = Inter({ subsets: ["latin"] });
-const DynamicSearch= dynamic(() => import('./components/SearchBar'), { ssr: false });
 const DynamicHeader = dynamic(() => import('./components/Header'), { ssr: false });
 const DynamicFooter = dynamic(() => import('./components/Footer'), { ssr: false });
-
 
 export const metadata: Metadata = {
   title: "Create Flowbite React",
@@ -26,17 +24,14 @@ export default function RootLayout({
       <head>
         <ThemeModeScript />
       </head>
-      <body className={inter.className}>
-        <header><DynamicHeader /></header>
-        
-        <main className="mt-[100px] mb-[100px]">
-          <DynamicSearch/>
-          {children}
-      
-        </main>
-
-        <footer><DynamicFooter /></footer>
-        
+      <body className={`${inter.className} flex flex-col min-h-screen`}>
+        <AppSessionProvider>
+          <DynamicHeader />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <DynamicFooter />
+        </AppSessionProvider>
       </body>
     </html>
   );

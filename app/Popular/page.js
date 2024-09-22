@@ -1,14 +1,14 @@
-'use client';
+'use client'
+
 import React, { useEffect, useState } from "react";
-import MovieModal from './MovieModal';
+import MovieModal from '../components/MovieModal';
 
-
-export default function Movie() {
+export default function Popular(){
     const [movielist, setMovielist] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
   
     const getMovie = () => {
-        fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=fb358115488158299075588e8f32cd8f`)
+        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=fb358115488158299075588e8f32cd8f`)
             .then(res => res.json())
             .then(json => setMovielist(json.results))
             .catch(error => console.error('Error fetching movies:', error));
